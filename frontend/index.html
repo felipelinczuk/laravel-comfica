@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comfica</title>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
     <script>
-        const btnAdd = document.querySelector("#btnAdd");
-        const modal = document.querySelector("#modal");
-
-        button.onClick = function(){
-            modal.showModal();
-        }
-
+        
 		function getBooks() {
             $.ajax({
                 url: 'http://127.0.0.1:8000/api/books',
@@ -24,18 +20,18 @@
                     console.log(data);
 					var grid = "";
 					for(var i = 0; i < data.length; i++) {
-						grid += `<div id="class" class="card" style="box-shadow: 5px 5px 5px 2px gray; width: 250px; height: 200px; margin-left: 15px; margin-right: 15px; margin-top: 15px">
-                                    <div class="pull-right" id="imgcard" style="position: relative; width: 250px; height: 200px; background-image: url('` + data[i].url_img +`'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
+						grid += `<div class="card" style="box-shadow: 5px 5px gray; border-radius: 30px; width: 252px; height: 200px; margin-left: 15px; margin-right: 15px; margin-bottom: 10px">
+                                    <div class="pull-right" id="imgcard" style="border-top-left-radius: 20px; border-top-right-radius: 20px; margin-left: -12px; position: relative; width: 252px; height: 200px; background-image: url('` + data[i].url_img + `'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
                                         <button id="fav" style="position: absolute; bottom: 0; right: 0; border: none; background-color: transparent;"><img src="./images/c.png" height="30px" width="30px"></button>
                                     </div>
-                                    <div class="card-body" style="background-color: lightgrey;  border-top-style: solid;">
-                                        <h5 class="card-title"> ` + data[i].name + `</h5>
+                                    <div class="card-body" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: lightgrey;  border-top-style: solid; width: 252px; margin-left: -12px;">
+                                        <h5 class="card-title">` + data[i].name + `</h5>
                                         <p class="card-text">` + data[i].description + `</p>
                                     </div>
                                 </div>`
 					}
-                    grid += `<div style="position: relative; width: 100%; margin-right: 30px;">
-                                <button id= "btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px; align-self: end;">Adicionar</button>
+                    grid += `<div style="position: relative; width: 100%;">
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
                             </div>`				
 					document.getElementById("board").innerHTML = grid;
 
@@ -58,30 +54,32 @@
 
     <div class="row" id="board" style="padding-top: 30px;
                 padding-bottom: 30px;
+                padding-right: 30px;
                 margin-bottom: 30px;
                 margin-left: 30px; 
                 margin-right: 30px;
                 height: 500px;
+                width: 95%;
                 border-radius: 20px;
                 background-color: lightblue;
                 overflow: auto;">
-
-        <div class="card" style="width: 300px; height: 250px; margin-left: 15px; margin-right: 15px;">
-            <div class="pull-right" id="imgcard" style="position: relative; width: 300px; height: 250px; background-image: url('https://blog.ipog.edu.br/wp-content/uploads/2018/05/Livro-de-contabilidade.jpg'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
+                
+        <div class="card" style="border-radius: 30px; width: 300px; height: 250px; margin-left: 15px; margin-right: 15px;">
+            <div class="pull-right" id="imgcard" style="border-top-left-radius: 20px; border-top-right-radius: 20px; margin-left: -12px; position: relative; width: 312px; height: 250px; background-image: url('https://blog.ipog.edu.br/wp-content/uploads/2018/05/Livro-de-contabilidade.jpg'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
                 <button id="fav" style="position: absolute; bottom: 0; right: 0; border: none; background-color: transparent;"><img src="./images/c.png" height="30px" width="30px"></button>
             </div>
 
-            <div class="card-body" style="background-color: lightgrey;  border-top-style: solid;">
-                <h5 class="card-title">Titulo 1</h5>
-                <p class="card-text">Descrição 1</p>
+            <div class="card-body" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: lightgrey;  border-top-style: solid; width: 312px; margin-left: -12px;">
+                <h5 class="card-title">Titulo 2</h5>
+                <p class="card-text">Descrição 2</p>
             </div>
         </div>
-        <div class="card" style="width: 300px; height: 250px; margin-left: 15px; margin-right: 15px;">
-            <div class="pull-right" id="imgcard" style=" position: relative; width: 300px; height: 250px; background-image: url('https://st.depositphotos.com/1014680/4108/i/600/depositphotos_41085891-stock-photo-books.jpg'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
+        <div class="card" style="border-radius: 30px; width: 300px; height: 250px; margin-left: 15px; margin-right: 15px;">
+            <div class="pull-right" id="imgcard" style="border-top-left-radius: 20px; border-top-right-radius: 20px; margin-left: -12px; position: relative; width: 312px; height: 250px; background-image: url('https://st.depositphotos.com/1014680/4108/i/600/depositphotos_41085891-stock-photo-books.jpg'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
                 <button id="fav" style="position: absolute; bottom: 0; right: 0; border: none; background-color: transparent;"><img src="./images/c.png" height="30px" width="30px"></button>
             </div>
 
-            <div class="card-body" style="background-color: lightgrey;  border-top-style: solid;">
+            <div class="card-body" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: lightgrey;  border-top-style: solid; width: 312px; margin-left: -12px;">
                 <h5 class="card-title">Titulo 2</h5>
                 <p class="card-text">Descrição 2</p>
             </div>
@@ -89,23 +87,33 @@
         
         
 
-        <div style="position: relative; width: 100%; margin-right: 30px;">
-            <button id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
+        <div style="position: relative; width: 100%;">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
         </div>
         
+        
 
-        <dialog id="modal">
-                <button>Fechar</button>
-                <form action="">
-                    <input type="text">
-                    <input type="text">
-                    <input type="text">
-                    <input type="button">   
-                </form>
-        </dialog>
-        
-        
+
     </div>
     
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>

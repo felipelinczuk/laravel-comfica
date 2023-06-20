@@ -1,0 +1,1 @@
+Tecnologias e conceitos utilizados: PHP, CSS, Laravel, Bootstrap, JQuery, APIs rest.
