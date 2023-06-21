@@ -52,8 +52,10 @@ class BooksController extends Controller
         }
     }
 
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        
+        if($book = Book::find($request['id'])){
+            return $book->delete();
+        }
     }
 }

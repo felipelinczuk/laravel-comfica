@@ -9,4 +9,6 @@ Route::get('/books', [BooksController::class, 'index']);
 
 Route::post('/books/new', [BooksController::class, 'store']);
 
-Route::post('/book/editfav  ', [BooksController::class, 'updateFav']);  
+Route::post('/book/editfav', [BooksController::class, 'updateFav']);
+
+Route::post('/book/destroy', [BooksController::class, 'destroy']); 
