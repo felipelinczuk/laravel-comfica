@@ -39,8 +39,8 @@
                                     </div>
                                 </div>`
 					}
-                    grid += `<div style="position: relative; width: 100%;">
-                                <button data-bs-toggle="modal" data-bs-target="#modalAdd" id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: whitesmoke; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
+                    grid += `<div style="position: absolute; width: 80%; height: 10%; bottom: 0;">
+                                <button data-bs-toggle="modal" data-bs-target="#modalAdd" id="btnAdd" style="position: fixed; right: 80px; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px; ">Adicionar</button>
                             </div>`				
 					document.getElementById("board").innerHTML = grid;
 
@@ -140,9 +140,9 @@
                                         </div>
                                     </div>`
                         }
-                        grid += `<div style="position: relative; width: 100%;">
-                                    <button data-bs-toggle="modal" data-bs-target="#modalAdd" id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: whitesmoke; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
-                                </div>`				
+                        grid += `<div style="position: absolute; width: 80%; height: 10%; bottom: 0;">
+                                    <button data-bs-toggle="modal" data-bs-target="#modalAdd" id="btnAdd" style="position: fixed; right: 80px; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px; ">Adicionar</button>
+                                </div>`			
                         document.getElementById("board").innerHTML = grid;
                     },
                     error: function(err) {
@@ -199,7 +199,8 @@
                 width: 95%;
                 border-radius: 20px;
                 background-color: rgb(206, 223, 229);
-                overflow: auto; ">
+                overflow: auto;
+                position: relative;">
     </div>
     
     <div class="modal fade bd-example-modal-xl" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -225,8 +226,8 @@
                 </div>
             </div>
             <div class="modal-footer" style="background-color: rgb(206, 223, 229);">
-              <button data-dismiss="modal" style="background-color: red;  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Cancelar</button>
-              <button onclick="insertBook()" style="background-color: rgb(20, 190, 51);  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Confirmar</button>
+              <button data-bs-dismiss="modal" style="background-color: red;  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Cancelar</button>
+              <button id="btnAdd" onclick="insertBook()" style="background-color: rgb(20, 190, 51);  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Confirmar</button>
             </div>
           </div>
         </div>
@@ -265,6 +266,20 @@
             }   
         })
       </script>
+
+    <script>
+        var btnAdd = document.getElementById("btnAdd");
+        btnAdd.addEventListener("click", function(event){
+            btnAdd.disabled = true; 
+        })
+    </script>
+
+    <script>
+        var btnDel = document.getElementById("btnDel");
+        btnDel.addEventListener("click", function(event){
+            btnDel.disabled = true; 
+        })
+    </script>
 
 </body>
 </html>
