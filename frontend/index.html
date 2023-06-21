@@ -19,25 +19,79 @@
                 success: function(data) {
                     console.log(data);
 					var grid = "";
+                    var fav= "";
 					for(var i = 0; i < data.length; i++) {
-						grid += `<div class="card" style="box-shadow: 5px 5px gray; border-radius: 30px; width: 252px; height: 200px; margin-left: 15px; margin-right: 15px; margin-bottom: 10px">
-                                    <div class="pull-right" id="imgcard" style="border-top-left-radius: 20px; border-top-right-radius: 20px; margin-left: -12px; position: relative; width: 252px; height: 200px; background-image: url('` + data[i].url_img + `'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
-                                        <button id="fav" style="position: absolute; bottom: 0; right: 0; border: none; background-color: transparent;"><img src="./images/c.png" height="30px" width="30px"></button>
+                        if(data[i].fav == 1){
+                            fav='./images/c2.png';
+                        }
+                        else{
+                            fav='./images/c.png';
+                        }
+						grid += `<div idBook="` + data[i].id + `" class="card" style="box-shadow: 5px 5px gray; border-radius: 30px; width: 252px; height: 200px; margin-left: 15px; margin-right: 15px; margin-bottom: 10px; padding-top: 5px;">
+                                    <div id="imgcard" style="border-top-left-radius: 20px; border-top-right-radius: 20px; margin-left: -12px; position: relative; width: 252px; height: 200px; background-image: url('` + data[i].url_img + `'); background-size: auto 100%; background-repeat: no-repeat; background-origin: content-box; padding-left: 5px; padding-right: 5px; background-position: center;">
+                                        <button id="btnFav" idBook="` + data[i].id + `" fav="` + data[i].fav + `" style="position: absolute; bottom: 0; right: 0; border: none; background-color: transparent;" onclick="favBook(this);"><img src="` + fav + `" height="30px" width="30px"></button>
                                     </div>
-                                    <div class="card-body" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: lightgrey;  border-top-style: solid; width: 252px; margin-left: -12px;">
+                                    <div class="card-body" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: white;  border-top-style: solid; width: 252px; margin-left: -12px; margin-top: 5px">
                                         <h5 class="card-title">` + data[i].name + `</h5>
                                         <p class="card-text">` + data[i].description + `</p>
                                     </div>
                                 </div>`
 					}
                     grid += `<div style="position: relative; width: 100%;">
-                                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
+                                <button data-bs-toggle="modal" data-bs-target="#modalAdd" id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: whitesmoke; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
                             </div>`				
 					document.getElementById("board").innerHTML = grid;
 
 				},
-				error: function() {
-					console.log('Falha ao obter dados');
+				error: function(err) {
+					console.log(err.responseText.message);
+				}
+			});
+        }
+
+        function insertBook() {
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/books/new',
+                type: 'POST',
+                data: { 
+                    name: document.getElementById('txtLivro').value,
+                    description: document.getElementById('txtDescricao').value,
+                    url_img: document.getElementById('txtUrl').value,
+                    fav: 0
+                },
+				dataType: 'json',
+                success: function() {
+                    location.reload();
+				},
+				error: function(err) {
+					console.log(err.responseText.message);
+				}
+			});
+        }
+
+        function favBook(book){
+            changedFav = '';
+            if(book.getAttribute('fav') == 0){
+                changedFav = 1;
+            }
+            else{
+                changedFav = 0;
+            }
+
+            console.log(book);
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/book/editfav',
+                type: 'POST',
+                data: { 
+                    id: book.getAttribute('idBook'),
+                    fav: changedFav
+                },
+				dataType: 'json',
+                success: function() {
+                    location.reload();
+				},
+				error: function(err) {
+					console.log(err.responseText.message);
 				}
 			});
         }
@@ -61,56 +115,35 @@
                 height: 500px;
                 width: 95%;
                 border-radius: 20px;
-                background-color: lightblue;
-                overflow: auto;">
-                
-        <div class="card" style="border-radius: 30px; width: 300px; height: 250px; margin-left: 15px; margin-right: 15px;">
-            <div class="pull-right" id="imgcard" style="border-top-left-radius: 20px; border-top-right-radius: 20px; margin-left: -12px; position: relative; width: 312px; height: 250px; background-image: url('https://blog.ipog.edu.br/wp-content/uploads/2018/05/Livro-de-contabilidade.jpg'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
-                <button id="fav" style="position: absolute; bottom: 0; right: 0; border: none; background-color: transparent;"><img src="./images/c.png" height="30px" width="30px"></button>
-            </div>
-
-            <div class="card-body" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: lightgrey;  border-top-style: solid; width: 312px; margin-left: -12px;">
-                <h5 class="card-title">Titulo 2</h5>
-                <p class="card-text">Descrição 2</p>
-            </div>
-        </div>
-        <div class="card" style="border-radius: 30px; width: 300px; height: 250px; margin-left: 15px; margin-right: 15px;">
-            <div class="pull-right" id="imgcard" style="border-top-left-radius: 20px; border-top-right-radius: 20px; margin-left: -12px; position: relative; width: 312px; height: 250px; background-image: url('https://st.depositphotos.com/1014680/4108/i/600/depositphotos_41085891-stock-photo-books.jpg'); background-size: 100% ;background-repeat: no-repeat, no-repeat;;">
-                <button id="fav" style="position: absolute; bottom: 0; right: 0; border: none; background-color: transparent;"><img src="./images/c.png" height="30px" width="30px"></button>
-            </div>
-
-            <div class="card-body" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: lightgrey;  border-top-style: solid; width: 312px; margin-left: -12px;">
-                <h5 class="card-title">Titulo 2</h5>
-                <p class="card-text">Descrição 2</p>
-            </div>
-        </div>
-        
-        
-
-        <div style="position: relative; width: 100%;">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnAdd" style="position: absolute; bottom: 0; right: 0; border: none; background-color: blue; color: white; border-radius: 10px; font-size: 12px; width: 120px; height: 30px;">Adicionar</button>
-        </div>
-        
-        
-
-
+                background-color: rgb(206, 223, 229);
+                overflow: auto; ">
     </div>
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade bd-example-modal-xl" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-header" style="background-color: darkblue; color: white; padding: 7px;">
+              <h5 class="modal-title" id="exampleModalLabel" style="font-size: 20px; margin: 0 auto;">Adicionar livro</h5>
+              <button class="close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 0; margin-right: 10px; margin-bottom: 5px; background-color: transparent; border: none; font-size: 35px;">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              ...
+            <div class="modal-body" style="text-align: center; background-color: rgb(206, 223, 229); font-size: 20px;">
+                <div style="width: 100%; padding-left: 50px; padding-right: 50px;">
+                    <b>
+                        <br>Titulo:
+                        <br><input type="text" id="txtLivro" style="width: 800px; margin-top: 10px; width: 100%; display: block; ">
+                        <br><br>Descrição:
+                        <br><input type="text" id="txtDescricao" style="width: 800px; margin-top: 10px; width: 100%; display: block;">
+                        <br><br>URL da imagem:
+                        <br><input type="text" id="txtUrl" style="width: 800px; margin-top: 10px; width: 100%; display: block;">
+                    </b>
+                    <br>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer" style="background-color: rgb(206, 223, 229);">
+              <button type="button" data-dismiss="modal" style="background-color: red;  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Cancelar</button>
+              <button type="button" onclick="insertBook()" style="background-color: rgb(20, 190, 51);  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Confirmar</button>
             </div>
           </div>
         </div>
