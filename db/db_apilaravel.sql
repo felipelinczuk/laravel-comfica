@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/06/2023 às 07:32
+-- Tempo de geração: 21/06/2023 às 21:02
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -31,7 +31,7 @@ CREATE TABLE `books` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) NOT NULL,
   `description` varchar(191) NOT NULL,
-  `url_img` varchar(191) NOT NULL,
+  `url_img` longtext NOT NULL,
   `fav` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -42,12 +42,18 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `name`, `description`, `url_img`, `fav`, `created_at`, `updated_at`) VALUES
-(1, 'Livro 1', 'Descrição 1', 'https://blog.ipog.edu.br/wp-content/uploads/2018/05/Livro-de-contabilidade.jpg', 1, NULL, NULL),
-(2, 'Livro 2', 'Descrição 2', 'https://st.depositphotos.com/1014680/4108/i/600/depositphotos_41085891-stock-photo-books.jpg', 0, NULL, NULL),
-(3, 'Crespusculo', 'Edward', 'https://img.freepik.com/fotos-gratis/livro-aberto-com-fundo-branco_23-2148882765.jpg', 1, '2023-06-14 06:04:07', '2023-06-14 06:04:07'),
-(4, 'Livro 4', 'Descrição 4', 'https://blog.contentools.com.br/wp-content/uploads/2017/06/livros-1024x618.jpg', 0, '2023-06-14 06:05:00', '2023-06-14 06:05:00'),
-(5, 'Livro 5', 'Descrição 5', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ66MiuLm1tj13gwEja4MxAXEhNbpOrozpBag&usqp=CAU', 0, '2023-06-14 06:05:36', '2023-06-14 06:05:36'),
-(6, 'Livro 6', 'Descrição 6', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAA77VxPOKCiTqKFeMBVOwFa44B_sMQzzV3A&usqp=CAU', 0, '2023-06-14 06:06:22', '2023-06-14 06:06:22');
+(12, 'Harry Potter', 'Livro 3', 'https://jamboeditora.com.br/wp-content/uploads/2020/09/jamboeditora-ordem-da-fenix-capa-dura-15x21-1.png', 0, '2023-06-21 21:48:09', '2023-06-21 21:48:09'),
+(13, 'Jogos Vorazes', 'Livro 1', 'https://m.media-amazon.com/images/I/61zBhzjS4LL._AC_UF1000,1000_QL80_.jpg', 0, '2023-06-21 21:49:20', '2023-06-21 21:49:20'),
+(14, 'Diário de um banana', 'Livro x', 'https://4.bp.blogspot.com/-fUpOhTpDFS0/VcjlYEPBCQI/AAAAAAAAGQE/7Uvt1q6TNcw/s1600/jeff_kinney_dias_de_cao_diario_de_um_banana_4.jpg', 0, '2023-06-21 21:49:59', '2023-06-21 21:49:59'),
+(15, 'A cabana', 'Qualquer', 'https://www.editoraarqueiro.com.br/media/upload/conteudos/9788580416343.png', 0, '2023-06-21 21:50:30', '2023-06-21 21:50:30'),
+(17, 'A culpa é das estrelas', 'John Green', 'https://m.media-amazon.com/images/I/41MRMmeNz0L.jpg', 0, '2023-06-21 21:53:17', '2023-06-21 21:53:17'),
+(18, 'O menino maluquinho', 'Infantil', 'https://www.horoscopovirtual.com.br/imagem/artigos/interno/images/Sem%20t%C3%ADtulo(3).png', 0, '2023-06-21 21:54:34', '2023-06-21 21:54:34'),
+(19, 'Circo Musical', 'Tião', 'https://univali.br/noticias/PublishingImages/2018-10-09-Capa%20Circo%20Musical.png', 0, '2023-06-21 21:55:21', '2023-06-21 21:55:21'),
+(20, 'Protagonize!', 'AA', 'https://editoracoerencia.com.br/wp-content/uploads/2023/02/capa_protagonize-01.png', 0, '2023-06-21 21:56:47', '2023-06-21 21:56:47'),
+(22, 'Amanhecer', 'SM', 'https://m.media-amazon.com/images/I/51+ljDi72mL._AC_UF1000,1000_QL80_.jpg', 0, '2023-06-21 21:58:06', '2023-06-21 21:58:06'),
+(23, 'IT: A coisa', 'Stephen King', 'https://m.media-amazon.com/images/I/51z0s3GcvwL.jpg', 0, '2023-06-21 21:59:36', '2023-06-21 21:59:36'),
+(24, 'O exorcista', 'Terror', 'https://m.media-amazon.com/images/I/41hdhjujI1L._AC_UF1000,1000_QL80_.jpg', 0, '2023-06-21 22:00:40', '2023-06-21 22:00:40'),
+(25, 'Turma da Mônica Jovem', 'Gibi', 'https://img.assinaja.com/assets/tZ/099/img/457970_520x520.png', 0, '2023-06-21 22:02:20', '2023-06-21 22:02:20');
 
 -- --------------------------------------------------------
 
@@ -144,7 +150,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de tabela `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
