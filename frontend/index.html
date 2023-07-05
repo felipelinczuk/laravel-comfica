@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comfica</title>
-        
+    
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    
 
     <script>
 
@@ -31,7 +32,7 @@
                             fav='./images/c.png';
                         }
 						grid += `<div class="card">
-                                    <div class="img-div" id="imgcard" style="background: url('` + data[i].url_img + `'); background-size: auto 100%; background-repeat: no-repeat; background-origin: content-box;    background-position: center;">
+                                    <div class="img-div" id="imgcard" style="background: url('` + data[i].url_img + `'); background-size: auto 100%; background-repeat: no-repeat; background-origin: content-box; background-position: center;">
                                         <button class="fav-btn" id="btnFav" idBook="` + data[i].id + `" fav="` + data[i].fav + `" onclick="favBook(this);"><img src="` + fav + `" height="30px" width="30px"></button>
                                     </div>
                                     <div class="card-body" idBook="` + data[i].id + `" data-bs-toggle="modal" data-bs-target="#modalDel" onclick="setBookToDel(this);">
@@ -197,28 +198,28 @@
     <div class="modal fade bd-example-modal-xl" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
-            <div class="modal-header" style="background-color: darkblue; color: white; padding: 7px;">
-              <h5 class="modal-title" id="exampleModalLabel" style="font-size: 20px; margin: 0 auto;">Adicionar livro</h5>
-              <button class="close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 0; margin-right: 10px; margin-bottom: 5px; background-color: transparent; border: none; font-size: 35px;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Adicionar livro</h5>
+              <button class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body" style="text-align: center; background-color: rgb(206, 223, 229); font-size: 20px;">
-                <div style="width: 100%; padding-left: 50px; padding-right: 50px;">
+            <div class="modal-body">
+                <div class="form-add-book" >
                     <b>
                         <br>Titulo:
-                        <br><input type="text" id="txtLivro" style="width: 800px; margin-top: 10px; width: 100%; display: block; ">
+                        <br><input type="text" class="form-txt" id="txtLivro">
                         <br><br>Descrição:
-                        <br><input type="text" id="txtDescricao" style="width: 800px; margin-top: 10px; width: 100%; display: block;">
+                        <br><input type="text" class="form-txt" id="txtDescricao">
                         <br><br>URL da imagem:
-                        <br><input type="text" id="txtUrl" style="width: 800px; margin-top: 10px; width: 100%; display: block;">
+                        <br><input type="text" class="form-txt" id="txtUrl">
                     </b>
                     <br>
                 </div>
             </div>
-            <div class="modal-footer" style="background-color: rgb(206, 223, 229);">
-              <button data-bs-dismiss="modal" style="background-color: red;  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Cancelar</button>
-              <button id="btnAdd" onclick="insertBook()" style="background-color: rgb(20, 190, 51);  width: 120px; height: 30px; color: white; border-radius: 10px; border: none;">Confirmar</button>
+            <div class="modal-footer">
+              <button class="cancel-btn" data-bs-dismiss="modal">Cancelar</button>
+              <button class="confirm-btn" id="btnAdd" onclick="insertBook()">Confirmar</button>
             </div>
           </div>
         </div>
@@ -227,18 +228,18 @@
       <div class="modal" tabindex="-1" role="dialog" id="modalDel">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header" style="background-color: darkblue; color: white; padding: 7px;">
-              <h5 class="modal-title" style="font-size: 20px; margin: 0 auto;">Confirmação</h5>
-              <button class="close" data-bs-dismiss="modal" aria-label="Close" style="position: absolute; right: 0; margin-right: 10px; margin-bottom: 5px; background-color: transparent; border: none; font-size: 35px;">
+            <div class="modal-header">
+              <h5 class="modal-title">Confirmação</h5>
+              <button class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body" style="text-align: center; background-color: rgb(206, 223, 229); font-size: 20px;">
+            <div class="modal-body">
               <p>Deseja realmente excluir esse livro?</p>
             </div>
-            <div class="modal-footer" style="background-color: rgb(206, 223, 229);">
-                <button class="btn btn-secondary" data-bs-dismiss="modal" style="background-color: red;  width: 120px; height: 30px; color: white; border-radius: 10px; border: none; padding-top: 0; padding-bottom: 0;">Cancelar</button>
-                <button class="btn btn-primary" id="btnDel" style="background-color: rgb(20, 190, 51);  width: 120px; height: 30px; color: white; border-radius: 10px; border: none; padding-top: 0; padding-bottom: 0;" onclick="delBook();">Confirmar</button>
+            <div class="modal-footer">
+                <button class="cancel-btn" data-bs-dismiss="modal">Cancelar</button>
+                <button class="confirm-btn" id="btnDel" onclick="delBook();">Confirmar</button>
               
             </div>
           </div>

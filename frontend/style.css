@@ -93,3 +93,66 @@ button.favs-btn{
     width: 120px;
     height: 30px;
 }
+
+div.modal-header{
+    background-color: darkblue;
+    color: white;
+    padding: 7px;
+}
+
+h5.modal-title{
+    font-size: 20px;
+    margin: 0 auto;
+}
+
+div.modal-body{
+    text-align: center;
+    background-color: rgb(206, 223, 229);
+    font-size: 20px;
+}
+
+div.modal-footer{
+    background-color: rgb(206, 223, 229);
+}
+
+div.form-add-book{
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+button.close{
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    background-color: transparent;
+    border: none;
+    font-size: 35px;
+}
+
+button.cancel-btn{
+    background-color: red;
+    width: 120px;
+    height: 30px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+button.confirm-btn{
+    background-color: rgb(20, 190, 51);
+    width: 120px;
+    height: 30px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+input.form-txt{
+    margin-top: 10px;
+    width: 100%;
+    display: block;
+}
