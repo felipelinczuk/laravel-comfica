@@ -1,0 +1,95 @@
+div.title{
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+div.row{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-bottom: 30px;
+    margin-left: 30px; 
+    margin-right: 30px;
+    height: 500px;
+    width: 95%;
+    border-radius: 20px;
+    background-color: rgb(206, 223, 229);
+    overflow: auto;
+    position: relative;
+}
+
+div.favs{
+    padding-top: 20px;
+    padding-bottom: 80px;
+    padding-right: 50px;
+}
+
+div.card{
+    box-shadow: 5px 5px gray;
+    border-radius: 30px;
+    width: 252px;
+    height: 200px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    padding-top: 5px;
+}
+
+div.img-div{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-left: -12px;
+    position: relative;
+    width: 252px;
+    height: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+div.card-body{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: white;
+    border-top-style: solid;
+    width: 252px;
+    margin-left: -12px;
+    margin-top: 5px"
+}
+div.add-book{
+    position: absolute;
+    width: 80%;
+    height: 10%;
+    bottom: 0;
+}
+
+button.fav-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background-color: transparent;
+}
+
+button.add-btn{
+    position: fixed;
+    right: 80px;
+    border: none;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 120px;
+    height: 30px;
+}
+
+button.favs-btn{
+    float: right;
+    background-color: darkblue;
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 120px;
+    height: 30px;
+}
